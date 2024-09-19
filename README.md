@@ -2,3 +2,4 @@
 - `npx creat-react-app crwn-clothing`
 - `yarn add sass`
 - `yarn add react-router-dom`
+- `npm i firebase`
