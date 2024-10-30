@@ -23,25 +23,23 @@ const SignInForm = () => {
     };
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-
-        createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(formFields.email, formFields.password)
-            console.log('response ', response)
+            const { user } = await signInAuthUserWithEmailAndPassword(
+                formFields.email,
+                formFields.password
+            );
 
             resetFormFields();
         } catch (error) {
-            if (error.code === 'auth/invalid-credential') {
-                alert('auth/invalid-credential')
-            } else (
-                console.log('error ', error)
-            )
+            if (error.code === "auth/invalid-credential") {
+                alert("auth/invalid-credential");
+            } else console.log("error ", error);
         }
     };
 
@@ -78,7 +76,7 @@ const SignInForm = () => {
                 <div className="buttons-container">
                     <Button type="submit">Sign In</Button>
 
-                    <Button type='button' buttonType={"google"} onClick={signInWithGoogle}>
+                    <Button type="button" buttonType={"google"} onClick={signInWithGoogle}>
                         Google sign in
                     </Button>
                 </div>

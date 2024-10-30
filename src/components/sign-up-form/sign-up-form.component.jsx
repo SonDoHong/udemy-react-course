@@ -18,6 +18,7 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
+    const { displayName, email, password, confirmPassword } = formFields
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields)
@@ -26,18 +27,18 @@ const SignUpForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (formFields.password !== formFields.confirmPassword) {
+        if (password !== confirmPassword) {
             alert("passwords do not match");
             return;
         }
 
         try {
             const { user } = await createAuthUserWithEmailAndPassword(
-                formFields.email,
-                formFields.password
+                email,
+                password
             );
 
-            await createUserDocumentFromAuth(user, { displayName: formFields.displayName });
+            await createUserDocumentFromAuth(user, { displayName });
 
             resetFormFields()
         } catch (error) {
@@ -67,7 +68,7 @@ const SignUpForm = () => {
                     required
                     onChange={handleChage}
                     name="displayName"
-                    value={formFields.displayName}
+                    value={displayName}
                 />
 
                 <FormInput
@@ -76,7 +77,7 @@ const SignUpForm = () => {
                     required
                     onChange={handleChage}
                     name="email"
-                    value={formFields.email}
+                    value={email}
                 />
                 
                 <FormInput
@@ -85,7 +86,7 @@ const SignUpForm = () => {
                     required
                     onChange={handleChage}
                     name="password"
-                    value={formFields.password}
+                    value={password}
                 />
 
                 <FormInput
@@ -94,7 +95,7 @@ const SignUpForm = () => {
                     required
                     onChange={handleChage}
                     name="confirmPassword"
-                    value={formFields.confirmPassword}
+                    value={confirmPassword}
                 />
 
                 <Button type="submit">Sign Up</Button>
