@@ -3,3 +3,4 @@
 - `yarn add sass`
 - `yarn add react-router-dom`
 - `npm i firebase`
+- `yarn add styled-component`
