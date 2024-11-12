@@ -36,7 +36,7 @@ const Navigation = () => {
                             SIGN IN
                         </NavLink>
                     )}
-
+ 
                     <CartIcon />
                 </NavLinks>
                 
